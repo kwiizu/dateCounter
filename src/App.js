@@ -1,25 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useState } from 'react';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Counter />
     </div>
   );
 }
+
+const Counter = () => {
+  const [step, setStep] = useState(1);
+  const [count, setCount] = useState(0);
+
+  const handleReduceStep = () => {
+    setStep((curStep) => curStep - 1);
+  };
+  const handleAddStep = () => {
+    setStep((curStep) => curStep + 1);
+  };
+
+  const handleReduceCount = () => {
+    setCount((curCount) => curCount - step);
+  };
+  const handleAddCount = () => {
+    setCount((curCount) => curCount + step);
+  };
+
+  const todayDate = new Date().toDateString();
+
+  // const date = new Date();
+  // const countDate = date.getDate() + count;
+  // date.setDate(countDate);
+
+  const calcDate = () => {
+    const date = new Date();
+    const countDate = date.getDate() + count;
+    date.setDate(countDate);
+    return date.toDateString();
+  };
+
+  calcDate();
+
+  return (
+    <>
+      <div>
+        <button onClick={handleReduceStep}>-</button>Increament: {step}
+        <button onClick={handleAddStep}>+</button>
+      </div>
+      <div>
+        <button onClick={handleReduceCount}>-</button>Count: {count}
+        <button onClick={handleAddCount}>+</button>
+      </div>
+      <p style={{ fontSize: 28 }}>
+        {`${
+          count === 0 ? `Today ${todayDate}` : `${count} days til ${calcDate()}`
+        }`}
+      </p>
+    </>
+  );
+};
 
 export default App;
