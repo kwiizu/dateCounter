@@ -45,16 +45,20 @@ const Counter = () => {
   return (
     <>
       <div>
-        <button onClick={handleReduceStep}>-</button>Increament: {step}
+        <button onClick={handleReduceStep}>-</button>
+        <span>Increament: {step}</span>
         <button onClick={handleAddStep}>+</button>
       </div>
       <div>
-        <button onClick={handleReduceCount}>-</button>Count: {count}
+        <button onClick={handleReduceCount}>-</button>
+        <span>Count: {count}</span>
         <button onClick={handleAddCount}>+</button>
       </div>
       <p style={{ fontSize: 28 }}>
         {`${
-          count === 0 ? `Today ${todayDate}` : `${count} days til ${calcDate()}`
+          count === 0
+            ? `Today is ${todayDate}`
+            : `${count} days til ${calcDate()}`
         }`}
       </p>
     </>
